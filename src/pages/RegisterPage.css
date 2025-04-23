@@ -1,0 +1,83 @@
+/* Контейнер */
+.register-container {
+    display: flex;
+    justify-content: center;
+    /* Горизонтальное центрирование */
+    align-items: center;
+    /* Вертикальное центрирование */
+    height: 70vh;
+    /* Устанавливаем высоту равной 100% от высоты экрана */
+    width: 100%;
+    /* Ширина на всю страницу */
+    margin: 0 auto;
+    /* Для выравнивания по центру */
+    padding: 20px;
+    /* Паддинг, чтобы не было прижато к краям */
+}
+
+/* Блок регистрации */
+.register-box {
+    background: #ffffff;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 350px;
+}
+
+.register-box h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+/* Поля ввода */
+.register-box .form-group input {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+/* Кнопка */
+.register-box button {
+    width: 100%;
+    padding: 12px;
+    background-color: black;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+    margin: 10px;
+}
+
+.register-box button:hover {
+    background-color: #222;
+}
+
+/* Сообщения об ошибках */
+.error {
+    color: red;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+/* Ссылка на вход */
+.login-link {
+    margin-top: 15px;
+    font-size: 14px;
+}
+
+.login-link a {
+    color: black;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.login-link a:hover {
+    text-decoration: underline;
+}

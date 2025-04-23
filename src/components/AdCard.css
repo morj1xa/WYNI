@@ -1,0 +1,27 @@
+.ad-card {
+    border: 1px solid #ddd;
+    padding: 16px;
+    border-radius: 8px;
+    margin: 16px 10px;
+    width: 300px;
+}
+
+.ad-title {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.ad-description {
+    font-size: 1em;
+    color: #555;
+}
+
+.ad-price {
+    color: #555;
+    font-weight: bold;
+}
+
+.ad-location {
+    font-size: 0.9em;
+    color: #777;
+}
