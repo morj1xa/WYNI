@@ -17,6 +17,7 @@ export default function AdCard({ ad }) {
             <p className="ad-description">{ad.description}</p>
             <p className="ad-price">{ad.price} руб.</p>
             <p className="ad-location">{ad.location}</p>
+            <p className="ad-location">{ad.users?.username}</p>
         </div>
 
     );

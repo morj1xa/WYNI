@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';  // Для навигации
 import ProfileCard from '../components/ProfileCard';
+import UsersAds from '../components/UsersAds';
 
 const ProfilePage = () => {
     const [user, setUser] = useState(null);
@@ -45,6 +46,7 @@ const ProfilePage = () => {
                 username={user.username}
                 handleLogout={handleLogout}
                 navigateToAdCreation={navigateToAdCreation} />
+            <UsersAds />
         </div>
     );
 };

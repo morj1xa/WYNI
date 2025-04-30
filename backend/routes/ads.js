@@ -8,11 +8,16 @@ const prisma = new PrismaClient();
 const router = express.Router();
 router.use(cors());
 
-router.get("/", async (req, res) => {
+router.get("/", async (req, res) => {           //Получение всех объявлений
     try {
         const ads = await prisma.ads.findMany({
             include: {
                 images: true, // <== это правильно
+                users: {
+                    select: {
+                        username: true,
+                    }
+                }
             },
         });
         res.json(ads);
@@ -22,8 +27,25 @@ router.get("/", async (req, res) => {
     }
 });
 
-// Создание объявления с изображениями
-router.post('/', authenticate, upload.array('images', 5), async (req, res) => {
+router.get('/my', authenticate, async (req, res) => {         //Получение своих обьявлений
+    try {
+        const userId = req.user.userId;
+
+        const myAds = await prisma.ads.findMany({
+            where: { user_id: userId },
+            include: {
+                images: true,
+            },
+        });
+
+        res.json(myAds);
+    } catch (error) {
+        console.error('Ошибка при получении объявлений пользователя:', error);
+        res.status(500).json({ error: 'Ошибка сервера' });
+    }
+});
+
+router.post('/', authenticate, upload.array('images', 5), async (req, res) => {         // Создание объявления с изображениями
     try {
         const { title, description, price, category_id, location } = req.body;
 
@@ -38,7 +60,7 @@ router.post('/', authenticate, upload.array('images', 5), async (req, res) => {
                 price: parseFloat(price),
                 category_id: parseInt(category_id),
                 location,
-                user_id: req.user.id, // ID пользователя из JWT
+                user_id: req.user.userId, // ID пользователя из JWT
             },
         });
 
