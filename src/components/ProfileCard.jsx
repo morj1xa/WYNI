@@ -1,6 +1,6 @@
 import './ProfileCard.css'
 
-export default function ProfileCard({ username, handleLogout }) {
+export default function ProfileCard({ username, handleLogout, navigateToAdCreation }) {
     return (
         <>
             <div className='profileCard'>
@@ -13,6 +13,7 @@ export default function ProfileCard({ username, handleLogout }) {
             </div>
 
             <button className='exitButton' onClick={handleLogout}>Выйти</button>
+            <button className='exitButton' onClick={navigateToAdCreation}>Создать объявление</button>
         </>
     )
 }

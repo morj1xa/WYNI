@@ -35,11 +35,16 @@ const ProfilePage = () => {
         navigate('/authorization');
     }
 
+    const navigateToAdCreation = () => {
+        navigate('/createad');
+    }
+
     return (
         <div>
             <ProfileCard
                 username={user.username}
-                handleLogout={handleLogout} />
+                handleLogout={handleLogout}
+                navigateToAdCreation={navigateToAdCreation} />
         </div>
     );
 };

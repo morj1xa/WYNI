@@ -6,6 +6,13 @@ export default function AdCard({ ad }) {
     return (
 
         <div className="ad-card">
+            {ad.images && ad.images.length > 0 && (
+                <img
+                    src={ad.images[0].image_url}
+                    alt={ad.title}
+                    className="ad-image"
+                />
+            )}
             <h3 className="ad-title">{ad.title}</h3>
             <p className="ad-description">{ad.description}</p>
             <p className="ad-price">{ad.price} руб.</p>

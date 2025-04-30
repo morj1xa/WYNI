@@ -25,3 +25,10 @@
     font-size: 0.9em;
     color: #777;
 }
+
+.ad-image {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 12px;
+}
