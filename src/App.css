@@ -6,9 +6,20 @@
 header {
   display: flex;
   justify-content: space-between;
-  padding: 15px 15px;
+  height: 70px;
   align-items: center;
   border-bottom: 1px solid rgb(163, 163, 163);
+}
+
+.header-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  /* Отступы слева и справа */
 }
 
 header nav {
@@ -34,6 +45,7 @@ header nav ul li a {
   position: relative;
   display: flex;
   align-items: center;
+
 }
 
 .search-input {
@@ -155,4 +167,8 @@ header nav ul li a {
 .error {
   color: red;
   margin-bottom: 20px;
+}
+
+.main {
+  padding: 0px 50px;
 }

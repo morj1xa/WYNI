@@ -1,19 +1,23 @@
 .ad-card {
-    border: 1px solid #ddd;
-    padding: 16px;
-    border-radius: 8px;
+    /* border: 1px solid #ddd; */
+    padding: 20px 0px;
     margin: 16px 10px;
-    width: 300px;
+    width: 250px;
+    height: 400px;
+}
+
+.text-container {
+    padding: 5px 0px 16px 16px;
 }
 
 .ad-title {
-    font-size: 1.5em;
-    font-weight: bold;
+    font-size: 1.1em;
+    font-weight: 650;
 }
 
 .ad-description {
     font-size: 1em;
-    color: #555;
+    font-weight: 400;
 }
 
 .ad-price {
@@ -28,7 +32,12 @@
 
 .ad-image {
     width: 100%;
-    height: auto;
-    border-radius: 8px;
+    height: 70%;
+    object-fit: cover;
     margin-bottom: 12px;
+}
+
+.divider {
+    border: none;
+    border-top: 1px solid #ccc;
 }

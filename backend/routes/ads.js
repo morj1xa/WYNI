@@ -37,7 +37,6 @@ router.get('/my', authenticate, async (req, res) => {         //Получени
                 images: true,
             },
         });
-
         res.json(myAds);
     } catch (error) {
         console.error('Ошибка при получении объявлений пользователя:', error);
@@ -79,5 +78,31 @@ router.post('/', authenticate, upload.array('images', 5), async (req, res) => { 
         res.status(500).json({ error: 'Ошибка сервера' });
     }
 });
+
+// GET /ads/:id
+router.get('/:id', async (req, res) => {
+    const adId = parseInt(req.params.id, 10);
+
+    try {
+        const ad = await prisma.ads.findUnique({
+            where: { id: adId },
+            include: {
+                users: { select: { id: true, username: true } },
+                images: true,
+                categories: true
+            }
+        });
+
+        if (!ad) {
+            return res.status(404).json({ error: 'Объявление не найдено' });
+        }
+
+        res.json(ad);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Ошибка при получении объявления' });
+    }
+});
+
 
 module.exports = router;

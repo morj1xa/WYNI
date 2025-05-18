@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import AdCard from '../components/AdCard';
+import './UsersAds.css'
 
 export default function UsersAds() {
     const [myAds, setMyAds] = useState([]);
@@ -33,14 +34,20 @@ export default function UsersAds() {
     }, []);
 
     return (
-        <div>
+        <>
+
             <h2>Мои объявления</h2>
-            {error && <p className="error">{error}</p>}
-            {myAds.length > 0 ? (
-                myAds.map((ad) => <AdCard key={ad.id} ad={ad} />)
-            ) : (
-                <p>У вас пока нет объявлений</p>
-            )}
-        </div>
+            <div className='myAds'>
+
+                {error && <p className="error">{error}</p>}
+                {myAds.length > 0 ? (
+                    myAds.map((ad) => <AdCard key={ad.id} ad={ad} />)
+                ) : (
+                    <p>У вас пока нет объявлений</p>
+                )}
+            </div>
+
+        </>
+
     );
 }

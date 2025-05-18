@@ -7,6 +7,8 @@ import ProfilePage from './pages/ProfilePage'
 import Header from "./components/Header"
 import Hero from './components/Hero'
 import CreateAdPage from './pages/CreateAdPage'
+import ChatPage from './pages/ChatPage'
+import AdPage from './pages/AdPage'
 import './App.css'
 
 function App() {
@@ -19,6 +21,8 @@ function App() {
         <Route path="/authorization" element={<AuthPage />} />
         <Route path="/profile" element={<ProfilePage />} />
         <Route path="/createad" element={<CreateAdPage />} />
+        <Route path="/chat" element={<ChatPage />} />
+        <Route path="/ad/:id" element={<AdPage />} />
       </Routes>
     </Router>
   );

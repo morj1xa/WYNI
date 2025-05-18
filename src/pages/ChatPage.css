@@ -1,0 +1,44 @@
+.chatPage {
+    display: flex;
+    height: 100vh;
+}
+
+.chatList {
+    width: 30%;
+    border-right: 1px solid #ccc;
+    overflow-y: auto;
+    padding: 1rem;
+}
+
+.chatWindow {
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+}
+
+.messages {
+    flex: 1;
+    overflow-y: auto;
+    margin-bottom: 1rem;
+}
+
+.myMsg {
+    text-align: right;
+    color: blue;
+}
+
+.otherMsg {
+    text-align: left;
+    color: black;
+}
+
+.messageInput {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.messageInput input {
+    flex: 1;
+    padding: 0.5rem;
+}

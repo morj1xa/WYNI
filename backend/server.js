@@ -4,6 +4,7 @@ const bodyParser = require("body-parser");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const adsRoutes = require("./routes/ads");
+const messagesRoutes = require("./routes/messages")
 const { PrismaClient } = require("@prisma/client");
 
 const prisma = new PrismaClient();
@@ -75,6 +76,7 @@ app.post("/login", async (req, res) => {
 });
 
 app.use("/ads", adsRoutes)
+app.use("/chats", messagesRoutes)
 
 // Запускаем сервер
 app.listen(3000, () => {

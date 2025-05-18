@@ -41,7 +41,7 @@ const ProfilePage = () => {
     }
 
     return (
-        <div>
+        <div className='main'>
             <ProfileCard
                 username={user.username}
                 handleLogout={handleLogout}

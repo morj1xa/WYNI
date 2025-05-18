@@ -5,6 +5,7 @@
     font-size: 14px;
     font-weight: 500;
     padding: 16px 24px;
+
 }
 
 .category-menu {
@@ -12,7 +13,7 @@
     display: flex;
     gap: 32px;
     margin: 0;
-    padding: 0;
+    padding-left: 90px;
 }
 
 .category-menu>li {
