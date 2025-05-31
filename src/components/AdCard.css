@@ -1,6 +1,5 @@
 .ad-card {
-    /* border: 1px solid #ddd; */
-    padding: 20px 0px;
+    padding: 0px 0px;
     margin: 16px 10px;
     width: 250px;
     height: 400px;
@@ -40,4 +39,29 @@
 .divider {
     border: none;
     border-top: 1px solid #ccc;
+}
+
+.price-fav-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.favorite-icon {
+    cursor: pointer;
+    display: inline-block;
+    transition: transform 0.2s ease;
+}
+
+.favorite-icon:hover {
+    transform: scale(1.2);
+}
+
+.heart-icon {
+    font-size: 15px;
+    color: gray;
+}
+
+.heart-icon.active {
+    color: red;
 }

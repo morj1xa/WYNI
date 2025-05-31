@@ -1,0 +1,17 @@
+.results-page {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px 24px;
+}
+
+.results-title {
+    font-size: 24px;
+    margin-bottom: 24px;
+}
+
+.results-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    background-color: #f0f0f0;
+}

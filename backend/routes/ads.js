@@ -12,12 +12,15 @@ router.get("/", async (req, res) => {           //Получение всех о
     try {
         const ads = await prisma.ads.findMany({
             include: {
-                images: true, // <== это правильно
+                categories: true,
+                images: true,
+                brand: true,
                 users: {
                     select: {
                         username: true,
                     }
-                }
+                },
+
             },
         });
         res.json(ads);
@@ -35,6 +38,7 @@ router.get('/my', authenticate, async (req, res) => {         //Получени
             where: { user_id: userId },
             include: {
                 images: true,
+                brand: true,
             },
         });
         res.json(myAds);
@@ -46,9 +50,9 @@ router.get('/my', authenticate, async (req, res) => {         //Получени
 
 router.post('/', authenticate, upload.array('images', 5), async (req, res) => {         // Создание объявления с изображениями
     try {
-        const { title, description, price, category_id, location } = req.body;
+        const { title, description, price, category_id, location, brandId } = req.body;
 
-        if (!title || !description || !price || !category_id || !location) {
+        if (!title || !description || !price || !category_id || !location || !brandId) {
             return res.status(400).json({ error: 'Все поля обязательны' });
         }
 
@@ -60,6 +64,7 @@ router.post('/', authenticate, upload.array('images', 5), async (req, res) => { 
                 category_id: parseInt(category_id),
                 location,
                 user_id: req.user.userId, // ID пользователя из JWT
+                brandId: parseInt(brandId)
             },
         });
 
@@ -89,7 +94,8 @@ router.get('/:id', async (req, res) => {
             include: {
                 users: { select: { id: true, username: true } },
                 images: true,
-                categories: true
+                categories: true,
+                brand: true,
             }
         });
 

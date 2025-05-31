@@ -13,7 +13,7 @@ export default function MessageInput({ ad_id, sender_id, receiver_id, onNewMessa
         })
             .then(res => res.json())
             .then(data => {
-                onNewMessage(data);
+                onNewMessage(data); // добавляем в список сообщений
                 setMessage('');
             })
             .catch(err => console.error('Ошибка отправки сообщения', err));
@@ -26,6 +26,7 @@ export default function MessageInput({ ad_id, sender_id, receiver_id, onNewMessa
                 value={message}
                 onChange={e => setMessage(e.target.value)}
                 placeholder="Введите сообщение..."
+                onKeyDown={(e) => { if (e.key === 'Enter') sendMessage(); }}
             />
             <button onClick={sendMessage}>Отправить</button>
         </div>

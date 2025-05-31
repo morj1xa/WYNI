@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';  // Для навигации
 import ProfileCard from '../components/ProfileCard';
 import UsersAds from '../components/UsersAds';
+import ProfileTabs from '../components/ProfileTabs';
+
 
 const ProfilePage = () => {
     const [user, setUser] = useState(null);
@@ -41,12 +43,16 @@ const ProfilePage = () => {
     }
 
     return (
+
         <div className='main'>
             <ProfileCard
                 username={user.username}
                 handleLogout={handleLogout}
                 navigateToAdCreation={navigateToAdCreation} />
-            <UsersAds />
+            <ProfileTabs userId={user.id} />
+
+
+            {/* <UsersAds /> */}
         </div>
     );
 };

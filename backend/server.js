@@ -5,6 +5,9 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const adsRoutes = require("./routes/ads");
 const messagesRoutes = require("./routes/messages")
+const categoriesRoutes = require("./routes/categories")
+const brandsRoutes = require("./routes/brands")
+const favoritesRoutes = require('./routes/favorites');
 const { PrismaClient } = require("@prisma/client");
 
 const prisma = new PrismaClient();
@@ -77,6 +80,9 @@ app.post("/login", async (req, res) => {
 
 app.use("/ads", adsRoutes)
 app.use("/chats", messagesRoutes)
+app.use("/categories", categoriesRoutes)
+app.use("/brands", brandsRoutes)
+app.use('/favorites', favoritesRoutes);
 
 // Запускаем сервер
 app.listen(3000, () => {

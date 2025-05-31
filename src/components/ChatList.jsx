@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import './ChatList.css'; // Добавим стили
 
 export default function ChatList({ onSelectChat }) {
     const [chats, setChats] = useState([]);
@@ -6,10 +7,8 @@ export default function ChatList({ onSelectChat }) {
 
     useEffect(() => {
         const token = localStorage.getItem("token");
-
         if (!token) return;
 
-        // Извлечь userId из токена
         try {
             const decoded = JSON.parse(atob(token.split('.')[1]));
             setUserId(decoded.userId);
@@ -18,9 +17,7 @@ export default function ChatList({ onSelectChat }) {
         }
 
         fetch("http://localhost:3000/chats/my", {
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
+            headers: { Authorization: `Bearer ${token}` }
         })
             .then(res => res.json())
             .then(data => setChats(data))
@@ -37,14 +34,21 @@ export default function ChatList({ onSelectChat }) {
                     ? chat.users_messages_receiver_idTousers
                     : chat.users_messages_sender_idTousers;
 
+                const adTitle = chat.ads?.title || 'Без названия';
+                const adImage = chat.ads.images[0].image_url || 'placeholderImage.jpg';
+                console.log(chat.ads.images);
+
                 return (
                     <div
                         key={`${chat.ad_id}-${otherUser?.id}`}
                         onClick={() => onSelectChat({ ...chat, currentUserId: userId })}
                         className="chat-list-item"
                     >
-                        <p><strong>{chat.ads?.title || 'Без названия'}</strong></p>
-                        <p>{otherUser?.username || 'Неизвестный пользователь'}</p>
+                        <img src={adImage} alt="Ad" className="chat-ad-thumb" />
+                        <div className="chat-info">
+                            <p className="chat-username">{otherUser?.username || 'Пользователь'}</p>
+                            <p className="chat-title">{adTitle}</p>
+                        </div>
                     </div>
                 );
             })}

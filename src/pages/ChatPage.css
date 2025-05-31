@@ -1,6 +1,6 @@
 .chatPage {
     display: flex;
-    height: 100vh;
+    height: 90vh;
 }
 
 .chatList {
@@ -25,6 +25,7 @@
 
 .myMsg {
     text-align: right;
+
     color: blue;
 }
 

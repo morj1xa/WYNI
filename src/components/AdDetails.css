@@ -21,7 +21,7 @@
 .image-gallery img {
     width: 100%;
     max-height: 800px;
-    object-fit: cover;
+    object-fit: contain;
     margin-bottom: 15px;
 }
 
@@ -94,4 +94,231 @@
 .ad-description h3,
 .ad-suggestions h3 {
     margin-bottom: 10px;
+}
+
+.ad-description {
+    white-space: pre-line;
+}
+
+.seller-card {
+    background-color: #fff;
+    border-radius: 12px;
+    padding: 16px;
+    margin-top: 20px;
+}
+
+.seller-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.seller-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1px solid #ccc;
+}
+
+.seller-name-location {
+    display: flex;
+    flex-direction: column;
+}
+
+.seller-name {
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.seller-location {
+    font-size: 14px;
+    color: #777;
+}
+
+.seller-actions {
+    margin-top: 12px;
+    display: flex;
+    gap: 8px;
+}
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+}
+
+.modal {
+    background: white;
+    width: 500px;
+    height: 60%;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    padding: 0;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    padding: 16px 24px 12px;
+}
+
+.modal-header h3 {
+    margin: 0 auto;
+    font-size: 20px;
+}
+
+.close-button {
+    position: absolute;
+    right: 24px;
+    top: 16px;
+    background: none;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    color: #888;
+}
+
+hr {
+    margin: 0;
+    border: none;
+    border-top: 1px solid #ddd;
+}
+
+.modal-body {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    flex: 1;
+    align-items: center;
+    background-color: #FAFAFA;
+}
+
+.modal-body textarea {
+    flex: 1;
+    resize: none;
+    padding: 12px;
+    font-size: 14px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    margin-bottom: 16px;
+    font-family: inherit;
+    max-height: 100px;
+    width: 350px;
+    max-width: 350px;
+}
+
+.modal-footer {
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 30px;
+}
+
+.modal-guidelines {
+    font-size: 13px;
+    color: #666;
+    text-align: center;
+    max-width: 380px;
+    margin-bottom: 12px;
+
+}
+
+.modal-footer button {
+    padding: 10px 20px;
+    font-size: 14px;
+    height: 40px;
+    background-color: #000;
+    color: white;
+    border: none;
+    cursor: pointer;
+    width: 380px;
+    max-width: 400px;
+    opacity: 1;
+    transition: opacity 0.3s;
+    font-weight: bold;
+}
+
+.modal-footer button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.image-gallery {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.main-image img {
+    width: 100%;
+    max-width: 600px;
+    height: 750px;
+    object-fit: contain;
+}
+
+.thumbnail-list {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    padding-bottom: 20px;
+}
+
+.thumbnail-list img {
+    width: 80px;
+    height: 60px;
+    object-fit: cover;
+    border: 2px solid transparent;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: border 0.2s ease;
+}
+
+.thumbnail-list img.active {
+    border-color: #5DBCD2;
+}
+
+.arrow-button {
+    position: absolute;
+    top: 45%;
+    transform: translateY(-50%);
+    font-size: 2rem;
+    background: rgba(255, 255, 255, 0.7);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    padding: 6px 12px;
+    z-index: 2;
+    transition: background 0.2s ease;
+}
+
+.arrow-button:hover {
+    background: rgba(255, 255, 255, 0.9);
+}
+
+.arrow-button.left {
+    left: 10px;
+}
+
+.arrow-button.right {
+    right: 10px;
+}
+
+.h3-brand {
+    text-decoration: underline;
+    text-underline-offset: 3px;
 }

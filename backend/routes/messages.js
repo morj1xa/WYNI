@@ -50,7 +50,14 @@ router.get('/my', authenticate, async (req, res) => {
             },
             orderBy: { sent_at: 'desc' },
             include: {
-                ads: { select: { title: true, id: true } },
+                ads: {
+                    select: {
+                        id: true,
+                        title: true,
+                        images: true,
+                    }
+                },
+
                 users_messages_sender_idTousers: { select: { id: true, username: true } },
                 users_messages_receiver_idTousers: { select: { id: true, username: true } }
             }
@@ -73,9 +80,6 @@ router.get('/my', authenticate, async (req, res) => {
     }
 });
 
-
-// POST /chats/messages
-// POST /chats/messages
 router.post('/messages', authenticate, async (req, res) => {
     const user1 = req.user.userId;
     const { ad_id, user2 } = req.body;

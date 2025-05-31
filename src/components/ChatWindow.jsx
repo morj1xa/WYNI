@@ -3,15 +3,16 @@ import MessageInput from './MessageInput';
 
 export default function ChatWindow({ chat }) {
     const [messages, setMessages] = useState([]);
+    const [intervalId, setIntervalId] = useState(null);
+    const token = localStorage.getItem('token');
+    const currentUserId = chat.currentUserId;
 
-    useEffect(() => {
-        const token = localStorage.getItem('token');
-        if (!token) return;
+    const user2 = chat.sender_id === currentUserId
+        ? chat.receiver_id
+        : chat.sender_id;
 
-        const user2 = chat.sender_id === chat.currentUserId
-            ? chat.receiver_id
-            : chat.sender_id;
-
+    // загрузка сообщений
+    const fetchMessages = () => {
         fetch('http://localhost:3000/chats/messages', {
             method: 'POST',
             headers: {
@@ -26,10 +27,22 @@ export default function ChatWindow({ chat }) {
             .then(res => res.json())
             .then(data => setMessages(data))
             .catch(err => console.error('Ошибка при загрузке сообщений', err));
-    }, [chat]);
+    };
 
-    const token = localStorage.getItem('token');
-    const currentUserId = chat.currentUserId;
+    useEffect(() => {
+        if (!token) return;
+
+        fetchMessages();
+
+        const id = setInterval(fetchMessages, 2000);
+        setIntervalId(id);
+
+        return () => clearInterval(id);
+    }, [chat, token]);
+
+    const handleNewMessage = (msg) => {
+        setMessages(prev => [...prev, msg]);
+    };
 
     return (
         <div className="chatWindow">
@@ -41,6 +54,10 @@ export default function ChatWindow({ chat }) {
                 ))}
             </div>
             <MessageInput
+                ad_id={chat.ad_id}
+                sender_id={currentUserId}
+                receiver_id={user2}
+                onNewMessage={handleNewMessage}
             />
         </div>
     );
