@@ -8,6 +8,7 @@ const messagesRoutes = require("./routes/messages")
 const categoriesRoutes = require("./routes/categories")
 const brandsRoutes = require("./routes/brands")
 const favoritesRoutes = require('./routes/favorites');
+const usersRoutes = require('./routes/users');
 const { PrismaClient } = require("@prisma/client");
 
 const prisma = new PrismaClient();
@@ -69,9 +70,9 @@ app.post("/login", async (req, res) => {
         }
 
         // Генерируем JWT-токен
-        const token = jwt.sign({ userId: user.id, email: user.email }, SECRET_KEY); // Токен - вечный на время разраюотки
+        const token = jwt.sign({ userId: user.id, email: user.email, avatar_url: user.avatar_url }, SECRET_KEY); // Токен - вечный на время разраюотки
 
-        res.json({ message: "Авторизация успешна", token, user: { id: user.id, username: user.username, email: user.email } });
+        res.json({ message: "Авторизация успешна", token, user: { id: user.id, username: user.username, email: user.email, avatar_url: user.avatar_url } });
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: "Server error" });
@@ -83,6 +84,7 @@ app.use("/chats", messagesRoutes)
 app.use("/categories", categoriesRoutes)
 app.use("/brands", brandsRoutes)
 app.use('/favorites', favoritesRoutes);
+app.use('/users', usersRoutes);
 
 // Запускаем сервер
 app.listen(3000, () => {

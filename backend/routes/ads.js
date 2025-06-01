@@ -1,8 +1,8 @@
 const express = require('express');
 const cors = require("cors");
 const { PrismaClient } = require('@prisma/client');
-const upload = require('../middleware/uploadMiddleware'); // Импортируем middleware для загрузки файлов
-const authenticate = require('../middleware/authMiddleware'); // Импортируем middleware для проверки JWT
+const upload = require('../middleware/uploadMiddleware');
+const authenticate = require('../middleware/authMiddleware');
 const prisma = new PrismaClient();
 
 const router = express.Router();
@@ -37,7 +37,9 @@ router.get('/my', authenticate, async (req, res) => {         //Получени
         const myAds = await prisma.ads.findMany({
             where: { user_id: userId },
             include: {
+                users: { select: { id: true, username: true, avatar_url: true } },
                 images: true,
+                categories: true,
                 brand: true,
             },
         });
@@ -63,18 +65,16 @@ router.post('/', authenticate, upload.array('images', 5), async (req, res) => { 
                 price: parseFloat(price),
                 category_id: parseInt(category_id),
                 location,
-                user_id: req.user.userId, // ID пользователя из JWT
+                user_id: req.user.userId,
                 brandId: parseInt(brandId)
             },
         });
 
-        // Сохраняем ссылки на изображения в БД
         const imageLinks = req.files.map(file => ({
             ad_id: ad.id,
-            image_url: file.location, // Ссылка на изображение, которая хранится в Yandex Object Storage
+            image_url: file.location,
         }));
 
-        // Сохраняем записи о изображениях в базе данных
         await prisma.images.createMany({ data: imageLinks });
 
         res.status(201).json({ message: 'Объявление успешно создано', ad });
@@ -92,7 +92,7 @@ router.get('/:id', async (req, res) => {
         const ad = await prisma.ads.findUnique({
             where: { id: adId },
             include: {
-                users: { select: { id: true, username: true } },
+                users: { select: { id: true, username: true, avatar_url: true } },
                 images: true,
                 categories: true,
                 brand: true,
