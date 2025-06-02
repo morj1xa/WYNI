@@ -1,3 +1,4 @@
+import TextPressure from "./TextPressure";
 export default function Hero() {
     return (
         <section className="hero">
@@ -6,11 +7,7 @@ export default function Hero() {
                 <source src="/hero_video.mp4" type="video/mp4" />
             </video>
             <div className="hero-content">
-                <h1>Добро пожаловать!</h1>
-                <p>Это текст на фоне фото или видео. Нужно сюда что-то вписать</p>
-                <div className="hero-buttons">
-                    <a href="#" className="hero-btn">Читать</a>
-                </div>
+                <TextPressure text="WYNI" minFontSize={500} />
             </div>
         </section>
     );

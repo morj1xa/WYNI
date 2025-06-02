@@ -19,11 +19,11 @@ export default function ProfilePage() {
         }
 
         try {
-            const user = JSON.parse(userData);  // Преобразуем строку JSON обратно в объект
+            const user = JSON.parse(userData);
             setUser(user);
         } catch (error) {
             console.error('Ошибка при парсинге данных пользователя:', error);
-            navigate('/authorization');  // Если данные не валидны, перенаправляем на логин
+            navigate('/authorization');
         }
     }, [navigate]);
 

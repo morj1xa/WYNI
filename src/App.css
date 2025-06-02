@@ -17,12 +17,12 @@
 
 
 header {
-  position: sticky;
-  top: 0;
+  top: 0px;
   z-index: 1000;
   display: flex;
   justify-content: space-between;
   height: 70px;
+  width: 100%;
   align-items: center;
   border-bottom: 1px solid #e1e1e1;
   background-color: white;
@@ -162,42 +162,9 @@ header nav ul li a {
 /* Контент в центре */
 .hero-content {
   position: relative;
-  z-index: 1;
+  padding-bottom: 5%;
 }
 
-.hero-content h1 {
-  font-size: 3rem;
-  margin-bottom: 20px;
-}
-
-.hero-content p {
-  font-size: 1.2rem;
-  margin-bottom: 20px;
-}
-
-.hero-buttons a {
-  display: inline-block;
-  padding: 15px 30px;
-  margin: 10px;
-  font-size: 20px;
-  font-weight: 600;
-  text-decoration: none;
-  color: white;
-  border-radius: 0px;
-  transition: 0.3s;
-}
-
-.hero-btn {
-  font-size: 20px;
-  background: transparent;
-  border: 1px solid #fff;
-  border-radius: 0px;
-}
-
-.hero-btn:hover {
-  background: #5DBCD2;
-  border-color: #5DBCD2;
-}
 
 .home-page {
   padding: 20px;

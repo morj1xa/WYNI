@@ -5,7 +5,13 @@ import './ChatPage.css';
 
 export default function ChatPage({ userId }) {
     const [selectedChat, setSelectedChat] = useState(null);
+    useEffect(() => {
+        document.body.classList.add('custom-page-style');
 
+        return () => {
+            document.body.classList.remove('custom-page-style');
+        };
+    }, []);
     return (
         <div className="chatPage">
             <ChatList userId={userId} onSelectChat={setSelectedChat} />

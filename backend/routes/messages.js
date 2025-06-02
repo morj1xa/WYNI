@@ -8,7 +8,6 @@ const authenticate = require('../middleware/authMiddleware');
 const router = express.Router();
 router.use(cors());
 
-// POST /api/messages
 router.post('/', async (req, res) => {          //Создание нового сообщения
     const { ad_id, sender_id, receiver_id, message } = req.body;
 
@@ -29,9 +28,8 @@ router.post('/', async (req, res) => {          //Создание нового 
     }
 });
 
-// GET /my
 router.get('/my', authenticate, async (req, res) => {
-    const userId = req.user.userId; // или req.user.id — зависит от твоего токена
+    const userId = req.user.userId;
 
 
     try {
@@ -57,10 +55,22 @@ router.get('/my', authenticate, async (req, res) => {
                         images: true,
                     }
                 },
-
-                users_messages_sender_idTousers: { select: { id: true, username: true } },
-                users_messages_receiver_idTousers: { select: { id: true, username: true } }
+                users_messages_sender_idTousers: {
+                    select: {
+                        id: true,
+                        username: true,
+                        avatar_url: true
+                    }
+                },
+                users_messages_receiver_idTousers: {
+                    select: {
+                        id: true,
+                        username: true,
+                        avatar_url: true
+                    }
+                }
             }
+
         });
 
 

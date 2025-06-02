@@ -1,6 +1,12 @@
+body.custom-page-style {
+    overflow: hidden;
+    height: 100vh;
+}
+
+
 .chatPage {
     display: flex;
-    height: 90vh;
+    height: 100vh;
 }
 
 .chatList {
@@ -15,17 +21,32 @@
     display: flex;
     flex-direction: column;
     padding: 1rem;
+    height: 87vh;
+    overflow-y: auto;
+    /* включаем вертикальный скролл */
 }
 
 .messages {
     flex: 1;
     overflow-y: auto;
     margin-bottom: 1rem;
+    overflow-y: scroll;
+    /* чтобы скроллилось */
+    scrollbar-width: none;
+    /* Firefox */
+    -ms-overflow-style: none;
+    /* IE и Edge */
+
+
+}
+
+.messages::-webkit-scrollbar {
+    display: none;
+    /* Chrome, Safari, Opera */
 }
 
 .myMsg {
     text-align: right;
-
     color: blue;
 }
 
@@ -35,11 +56,81 @@
 }
 
 .messageInput {
-    display: flex;
-    gap: 0.5rem;
+    position: relative;
+    width: 100%;
+    max-width: 100%;
 }
 
 .messageInput input {
-    flex: 1;
-    padding: 0.5rem;
+    width: 100%;
+    padding: 0.5rem 3rem 0.5rem 0.5rem;
+    /* справа добавляем отступ для кнопки */
+    box-sizing: border-box;
+    font-size: 1rem;
+}
+
+.messageInput button {
+    position: absolute;
+    right: 0.3rem;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    color: #0f7a93;
+    padding: 5px;
+    outline: none;
+    user-select: none;
+}
+
+/* При наведении на кнопку */
+.messageInput button:hover {
+    color: #064a59;
+}
+
+
+.msgHeader {
+    display: flex;
+    align-items: center;
+    margin-bottom: 4px;
+}
+
+.msgAuthor {
+    color: #0f7a93;
+    font-weight: bold;
+    margin-left: 8px;
+}
+
+.avatar {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.msgHeader.left {
+    justify-content: flex-start;
+}
+
+.msgHeader.right {
+    justify-content: flex-end;
+}
+
+.myMsg p {
+    text-align: right;
+    color: black;
+}
+
+.otherMsg p {
+    text-align: left;
+    color: black;
+}
+
+.myMsg p,
+.otherMsg p {
+    white-space: normal;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    word-break: break-word;
 }

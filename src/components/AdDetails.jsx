@@ -128,7 +128,7 @@ export default function AdDetails() {
                         <h1>{ad.title}</h1>
                         <h3 className='h3-brand'>{ad.brand?.name}</h3>
                         <h2>{ad.price} ₽</h2>
-                        <button className="buy-button">Купить</button>
+
                         {ad.users.id === currentUserId ? (
                             <div className="seller-card owner-card">
                                 <p className="owner-label">Это ваше объявление</p>
@@ -138,23 +138,27 @@ export default function AdDetails() {
                                 </div>
                             </div>
                         ) : (
-                            <div className="seller-card">
-                                <div className="seller-header">
-                                    <img
-                                        className="seller-avatar"
-                                        src={ad.users.avatar_url || 'default_profile_image.png'}
-                                        alt={`${ad.users.username} avatar`}
-                                    />
-                                    <div className="seller-name-location">
-                                        <p className="seller-name">{ad.users.username}</p>
-                                        <p className="seller-location">{ad.location}</p>
+                            <>
+                                <button className="buy-button">Купить</button>
+                                <div className="seller-card">
+                                    <div className="seller-header">
+                                        <img
+                                            className="seller-avatar"
+                                            src={ad.users.avatar_url || 'default_profile_image.png'}
+                                            alt={`${ad.users.username} avatar`}
+                                        />
+                                        <div className="seller-name-location">
+                                            <p className="seller-name">{ad.users.username}</p>
+                                            <p className="seller-location">{ad.location}</p>
+                                        </div>
+                                    </div>
+                                    <div className="seller-actions">
+                                        <button className="message-button" onClick={() => setShowMessageModal(true)}>Написать</button>
+                                        <button className="follow-button">Подписаться</button>
                                     </div>
                                 </div>
-                                <div className="seller-actions">
-                                    <button className="message-button" onClick={() => setShowMessageModal(true)}>Написать</button>
-                                    <button className="follow-button">Подписаться</button>
-                                </div>
-                            </div>
+                            </>
+
                         )}
 
 

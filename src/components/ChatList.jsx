@@ -41,7 +41,14 @@ export default function ChatList({ onSelectChat }) {
                 return (
                     <div
                         key={`${chat.ad_id}-${otherUser?.id}`}
-                        onClick={() => onSelectChat({ ...chat, currentUserId: userId })}
+                        onClick={() => onSelectChat({
+                            ...chat,
+                            currentUserId: userId,
+                            sender_name: chat.users_messages_sender_idTousers?.username,
+                            receiver_name: chat.users_messages_receiver_idTousers?.username,
+                            sender_avatar: chat.users_messages_sender_idTousers?.avatar_url,
+                            receiver_avatar: chat.users_messages_receiver_idTousers?.avatar_url,
+                        })}
                         className="chat-list-item"
                     >
                         <img src={adImage} alt="Ad" className="chat-ad-thumb" />

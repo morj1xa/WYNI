@@ -112,10 +112,11 @@
 }
 
 .logoutBtn {
-    background-color: #e63946;
+    background-color: #b00000;
     color: white;
     border: none;
     padding: 10px 16px;
+    border: none;
     font-size: 0.95rem;
     display: flex;
     justify-content: end;
