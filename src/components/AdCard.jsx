@@ -4,7 +4,10 @@ import './AdCard.css';
 
 export default function AdCard({ ad }) {
     const [isFavorite, setIsFavorite] = useState(false);
+    const [currentUserId, setCurrentUserId] = useState(null);
     const token = localStorage.getItem('token');
+    const isOwner = ad?.users?.id === currentUserId;
+
 
     useEffect(() => {
         const checkFavorite = async () => {
@@ -32,6 +35,15 @@ export default function AdCard({ ad }) {
         };
 
         if (token) checkFavorite();
+
+        if (token) {
+            try {
+                const decoded = JSON.parse(atob(token.split('.')[1])); // декодируем JWT
+                setCurrentUserId(decoded.userId); // ✅ правильно сохраняем userId
+            } catch (error) {
+                console.error('Ошибка при декодировании токена', error);
+            }
+        }
     }, [ad.id, token]);
 
     const toggleFavorite = async (e) => {
@@ -82,12 +94,23 @@ export default function AdCard({ ad }) {
                 <p>{ad.description?.slice(0, 23)}...</p>
                 <p className="ad-price">{ad.price} руб.</p>
                 <p className="ad-location">{ad.location}</p>
-                <span className="favorite-icon" onClick={toggleFavorite}>
-                    {isFavorite ? (
-                        <FaHeart className="heart-icon active" />
+                <span className="favorite-icon">
+                    {isOwner ? (
+                        <FaRegHeart className="heart-icon-disabled" />
                     ) : (
-                        <FaRegHeart className="heart-icon" />
+                        <span className="favorite-icon" onClick={toggleFavorite}>
+                            {isFavorite ? (
+                                <FaHeart className="heart-icon active" />
+                            ) : (
+                                <FaRegHeart className="heart-icon" />
+                            )}
+                        </span>
                     )}
+
+
+
+
+
                 </span>
             </div>
         </div>

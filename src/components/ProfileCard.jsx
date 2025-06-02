@@ -1,16 +1,23 @@
 import './ProfileCard.css';
-import { FaMapMarkerAlt, FaStar, FaShare, FaEdit } from 'react-icons/fa';
+import { useState } from 'react';
+import { FaMapMarkerAlt, FaStar, FaShare, FaEdit, FaSignOutAlt } from 'react-icons/fa';
+import ProfileEditModal from './ProfileEditModal';
 
-export default function ProfileCard({ username, handleLogout, navigateToAdCreation }) {
+export default function ProfileCard({ username, avatarUrl, handleLogout, navigateToAdCreation }) {
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    const openModal = () => setIsModalOpen(true);
+    const closeModal = () => setIsModalOpen(false);
+
     return (
-
         <>
-
             <div className="profileCardContainer">
-                {/* Левая часть */}
                 <div className="leftSection">
-                    <img src="default_profile_image.png" alt="Дефолтная ава" className="profileImage" />
-
+                    <img
+                        src={avatarUrl || "default_profile_image.png"}
+                        alt="Аватар"
+                        className="profileImage"
+                    />
                     <div className="userInfo">
                         <h1>{username}</h1>
                         <div className="userStatsRow">
@@ -18,13 +25,12 @@ export default function ProfileCard({ username, handleLogout, navigateToAdCreati
                                 <FaMapMarkerAlt className="icon" />
                                 <span>Russia</span>
                             </div>
-
                         </div>
                         <p className="registered">Зарегистрирован в 2025</p>
                         <p className="transactions">0 транзакций</p>
                     </div>
-
                 </div>
+
                 <div className="centerSection">
                     <div className="rating">
                         <FaStar className="icon" />
@@ -38,26 +44,29 @@ export default function ProfileCard({ username, handleLogout, navigateToAdCreati
                     </div>
                 </div>
 
+                <div className="rightSection-col">
 
-                {/* Правая часть */}
-                <div className="rightSection">
-                    <button className="profileBtn">
-                        <FaEdit /> Изменить профиль
-                    </button>
-                    <button className="profileBtn">
-                        <FaShare />
-                    </button>
+                    <div className="rightSection">
+                        <button className="profileBtn" onClick={openModal}>
+                            <FaEdit /> Изменить профиль
+                        </button>
+                        <button className="logoutBtn" onClick={handleLogout}>
+                            <FaSignOutAlt />
+                        </button>
 
+                    </div>
+                    <button className="profileBtnCreate" onClick={navigateToAdCreation}>
+                        + Создать объявление
+                    </button>
                 </div>
-
             </div>
-            <button className="profileBtn" onClick={navigateToAdCreation}>
-                Создать объявление
-            </button>
-            <button className="profileBtn" onClick={handleLogout}>
-                Выйти
-            </button>
-        </>
 
+
+
+
+            {isModalOpen && (
+                <ProfileEditModal onClose={closeModal} />
+            )}
+        </>
     );
 }

@@ -47,18 +47,40 @@ export default function HomePage() {
 
 
             <SectionWithBannerOnRight
-                section={<HomeSection title="Спорт вне зала" items={ads.filter(ad => ['Nike', 'Adidas', 'Reebok', 'Under Armour', 'The North Face'].includes(ad.brand?.name))} />}
+                section={<HomeSection
+                    title="Спорт вне зала"
+                    items={ads.filter(ad => ['Nike', 'Adidas', 'Reebok', 'Under Armour', 'The North Face'].includes(ad.brand?.name))}
+                    linkTarget="/filter/collection/sport-outdoor"
+                />}
                 bannerImage="banner1.jpg"
             />
+
             <ThreeHomeSections
                 sections={[
-                    <HomeSection title="Для streetwear фанатов" items={ads.filter(ad => ['Supreme', 'Off-White', 'Stüssy', 'Stone Island'].includes(ad.brand?.name))} />,
-                    <HomeSection title="Итальянская мода" items={ads.filter(ad => ['Gucci', 'Dolce & Gabbana', 'Valentino', 'Versace', 'Fendi'].includes(ad.brand?.name))} />,
-                    <HomeSection title="Тепло по моде" items={ads.filter(ad => ['Пуховики', 'Куртки', 'Пальто'].includes(ad.categories?.name))} />,
+                    <HomeSection
+                        title="Итальянская мода"
+                        items={ads.filter(ad => ['Gucci', 'Dolce & Gabbana', 'Valentino', 'Versace', 'Fendi'].includes(ad.brand?.name))}
+                        linkTarget="/filter/collection/italian-fashion"
+                    />,
+                    <HomeSection
+                        title="Для streetwear фанатов"
+                        items={ads.filter(ad => ['Supreme', 'Off-White', 'Stüssy', 'Stone Island'].includes(ad.brand?.name))}
+                        linkTarget="/filter/collection/streetwear-fans"
+                    />,
+                    <HomeSection
+                        title="Тепло по моде"
+                        items={ads.filter(ad => ['Пуховики', 'Куртки', 'Пальто'].includes(ad.categories?.name))}
+                        linkTarget="/filter/collection/winter-style"
+                    />,
                 ]}
             />
+
             <SectionWithBannerOnLeft
-                section={<HomeSection title="Лето в шортах" items={ads.filter(ad => ['Шорты'].includes(ad.categories?.name))} />}
+                section={<HomeSection
+                    title="Лето в шортах"
+                    items={ads.filter(ad => ['Шорты'].includes(ad.categories?.name))}
+                    linkTarget="/filter/collection/summer-shorts"
+                />}
                 bannerImage="banner2.jpg"
             />
 

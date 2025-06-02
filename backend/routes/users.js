@@ -32,4 +32,33 @@ router.post('/avatar', authenticate, upload.single('avatar'), async (req, res) =
     }
 });
 
+router.put('/update', authenticate, async (req, res) => {
+    const userId = req.user.userId;
+    const { username } = req.body;
+
+    if (!username || username.trim().length < 3) {
+        return res.status(400).json({ error: 'Неверное имя пользователя' });
+    }
+
+    try {
+        const updatedUser = await prisma.users.update({
+            where: { id: userId },
+            data: { username: username.trim() },
+            select: {
+                id: true,
+                username: true,
+                email: true,
+                avatar_url: true,
+                phone: true,
+                created_at: true
+            },
+        });
+
+        res.json(updatedUser);
+    } catch (error) {
+        console.error('Ошибка при обновлении пользователя:', error);
+        res.status(500).json({ error: 'Внутренняя ошибка сервера' });
+    }
+});
+
 module.exports = router;

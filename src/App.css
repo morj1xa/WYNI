@@ -28,6 +28,16 @@ header {
   background-color: white;
 }
 
+.logo {
+  color: black;
+  font-size: 25px;
+}
+
+.logo a {
+  text-decoration: none;
+  color: black;
+}
+
 .header-container {
   max-width: 1200px;
   margin: 0 auto;
@@ -93,6 +103,27 @@ header nav ul li a {
   color: #888;
   font-size: 16px;
   pointer-events: none;
+}
+
+.search-form {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.search-button {
+  position: absolute;
+  right: 5px;
+  padding: 8px 18px;
+  background-color: transparent;
+  color: black;
+  border: 1px solid #e1e1e1;
+  cursor: pointer;
+  transition: border-color 0.3s;
+}
+
+.search-button:hover {
+  border-color: black;
 }
 
 .hero {

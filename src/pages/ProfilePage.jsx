@@ -5,7 +5,7 @@ import UsersAds from '../components/UsersAds';
 import ProfileTabs from '../components/ProfileTabs';
 
 
-const ProfilePage = () => {
+export default function ProfilePage() {
     const [user, setUser] = useState(null);
     const navigate = useNavigate(); // Для перенаправления
 
@@ -47,14 +47,13 @@ const ProfilePage = () => {
         <div className='main'>
             <ProfileCard
                 username={user.username}
+                avatarUrl={user.avatar_url}
                 handleLogout={handleLogout}
                 navigateToAdCreation={navigateToAdCreation} />
-            <ProfileTabs userId={user.id} />
+            <ProfileTabs userId={user.id} btn={<button onClick={navigateToAdCreation}>
+                + Создать объявление
+            </button>} />
 
-
-            {/* <UsersAds /> */}
         </div>
     );
 };
-
-export default ProfilePage;

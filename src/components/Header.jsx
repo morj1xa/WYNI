@@ -5,7 +5,9 @@ export default function Header() {
             <header>
                 <div className="header-container">
 
-                    <h2>WYNI</h2>
+                    <h2 className="logo">
+                        <a href="/">WYNI</a>
+                    </h2>
                     <form action="" method="get">
                         <SearchBar />
                     </form>
@@ -20,6 +22,7 @@ export default function Header() {
                             <li>
                                 <a href="/profile">Profile</a>
                             </li>
+
                         </ul>
                     </nav>
 

@@ -65,3 +65,7 @@
 .heart-icon.active {
     color: red;
 }
+
+.heart-icon-disabled {
+    color: transparent
+}

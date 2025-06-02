@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './ProfileTabs.css';
 import AdCard from '../components/AdCard';
 
-export default function ProfileTabs({ userId }) {
+export default function ProfileTabs({ userId, btn }) {
     const [activeTab, setActiveTab] = useState('ads');
     const [myAds, setMyAds] = useState([]);
     const [favorites, setFavorites] = useState([]);
@@ -22,7 +22,11 @@ export default function ProfileTabs({ userId }) {
         setLoading(true);
         setError('');
         try {
-            const res = await fetch(`http://localhost:3000/ads?userId=${userId}`);
+            const res = await fetch(`http://localhost:3000/ads/my`, {
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                }
+            });
             const data = await res.json();
             if (!res.ok) throw new Error('Ошибка загрузки объявлений');
             setMyAds(data);
@@ -62,11 +66,17 @@ export default function ProfileTabs({ userId }) {
         if (activeTab === 'ads') {
             if (!myAds.length) return <p>У вас пока нет объявлений.</p>;
             return (
-                <div className="my-ads-grid">
-                    {myAds.map(ad => (
-                        <AdCard key={ad.id} ad={ad} />
-                    ))}
-                </div>
+                <>
+                    < div className="my-ads-grid" >
+                        {
+                            myAds.map(ad => (
+                                <AdCard key={ad.id} ad={ad} />
+                            ))
+                        }
+                    </div >
+                </>
+
+
             );
         }
 
@@ -106,12 +116,6 @@ export default function ProfileTabs({ userId }) {
                     onClick={() => setActiveTab('favorites')}
                 >
                     Избранное
-                </button>
-                <button
-                    className={`tab-button ${activeTab === 'reviews' ? 'active' : ''}`}
-                    onClick={() => setActiveTab('reviews')}
-                >
-                    Отзывы
                 </button>
             </div>
 

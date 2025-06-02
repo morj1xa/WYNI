@@ -1,17 +1,28 @@
-.results-page {
+.filtered-page {
+    padding: 2rem;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 20px 24px;
 }
 
-.results-title {
-    font-size: 24px;
-    margin-bottom: 24px;
+.filtered-header h1 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    color: #222;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 0.5rem;
 }
 
-.results-grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    background-color: #f0f0f0;
+.loading,
+.error,
+.no-results {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #666;
+    margin-top: 2rem;
+}
+
+.ads-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.5rem;
 }

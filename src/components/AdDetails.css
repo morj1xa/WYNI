@@ -322,3 +322,16 @@ hr {
     text-decoration: underline;
     text-underline-offset: 3px;
 }
+
+.owner-card {
+    background-color: #fff;
+    padding: 16px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.owner-label {
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+}
